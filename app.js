@@ -7,6 +7,7 @@ var basicAuth = require('express-basic-auth')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var bodyParser = require('body-parser');
+var count = 0;
 var app = express();
 // app.use(basicAuth({
 //   users: { 'admin': 'abbadabbaQwerty@123$%^' }
@@ -44,14 +45,14 @@ app.use(function(req, res, next) {
     // res.set('WWW-Authenticate', 'Basic realm="401"') // change this
     // res.status(401).send('Authentication required.') // custom message
     let now = new Date();
-    console.log(now, "++++++++++++++++++++++++++")
-    console.log(req.url, ">>>", req.headers)
-    console.log(now, "++++++++++++++++++++++++++")
+    console.log("+++++INCOMING REQUEST :: TIME :: "+ now.toLocaleString() + " REQUEST NUMBER # :: " + ++count + " :: FROM \x1b[36m%s\x1b[0m",req.headers['x-forwarded-for'],"\x1b[32mURL\x1b[0m",req.url +" ")
+    // console.log(req.url, "\n", req.headers)
+    // console.log("++++++++++++++++++++++++++ INCOMING REQUEST "+ count +"++++++++++++++++++++++++++++++++++++++++++")
     next();
 
     // -----------------------------------------------------------------------
 })
-app.use(logger('dev'));
+// app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -85,9 +86,9 @@ app.use(function(req, res, next) {
     // res.set('WWW-Authenticate', 'Basic realm="401"') // change this
     // res.status(401).send('Authentication required.') // custom message
     let now = new Date();
-    console.log(now, "++++++++++++++++++++++++++")
-    console.log(req.url, ">>>", req.headers)
-    console.log(now, "++++++++++++++++++++++++++")
+    // console.log(now, "++++++++++++++++++++++++++")
+    // console.log(req.url, ">>>", req.headers)
+    // console.log(now, "++++++++++++++++++++++++++")
     next();
 
     // -----------------------------------------------------------------------
