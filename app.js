@@ -19,7 +19,7 @@ app.set('view engine', 'jade');
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-
+//	console.log(req.connection.remoteAddress)
     next();
 
 });
@@ -35,7 +35,8 @@ app.use(function(req, res, next) {
     // const b64auth = (req.headers.authorization || '').split(' ')[1] || ''
     // const [login, password] = new Buffer(b64auth, 'base64').toString().split(':')
 
-    // // Verify login and password are set and correct
+   
+	// // Verify login and password are set and correct
     // if (login && password && login === auth.login && password === auth.password) {
     //   // Access granted...
     //   return next()
@@ -45,7 +46,7 @@ app.use(function(req, res, next) {
     // res.set('WWW-Authenticate', 'Basic realm="401"') // change this
     // res.status(401).send('Authentication required.') // custom message
     let now = new Date();
-    console.log("+++++INCOMING REQUEST :: TIME :: "+ now.toLocaleString() + " REQUEST NUMBER # :: " + ++count + " :: FROM \x1b[36m%s\x1b[0m",req.headers['x-forwarded-for'],"\x1b[32mURL\x1b[0m",req.url +" ")
+    console.log("+++++INCOMING REQUEST :: TIME :: "+ now.toLocaleString() + " REQUEST NUMBER # :: " + ++count + " :: FROM \x1b[36m%s\x1b[0m",req.connection.remoteAddress+"\x1b[32mURL\x1b[0m",req.url +" ")
     // console.log(req.url, "\n", req.headers)
     // console.log("++++++++++++++++++++++++++ INCOMING REQUEST "+ count +"++++++++++++++++++++++++++++++++++++++++++")
     next();
