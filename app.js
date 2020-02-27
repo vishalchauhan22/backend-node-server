@@ -46,7 +46,7 @@ app.use(function(req, res, next) {
     // res.set('WWW-Authenticate', 'Basic realm="401"') // change this
     // res.status(401).send('Authentication required.') // custom message
     let now = new Date();
-    console.log("+++++INCOMING REQUEST :: TIME :: "+ now.toLocaleString() + " REQUEST NUMBER # :: " + ++count + " :: FROM \x1b[36m%s\x1b[0m",req.connection.remoteAddress+"\x1b[32mURL\x1b[0m",req.url +" ")
+    console.log("+++++INCOMING REQUEST :: TIME :: "+ now.toLocaleString() + " REQUEST NUMBER # :: " + ++count + " :: FROM \x1b[36m%s\x1b[0m",(req.headers['x-forwarded-for'] || req.connection.remoteAddress)," \x1b[33mMETHOD ::\x1b[33m",req.method+" \x1b[32mURL\x1b[32m",req.url,"\x1b[0m")
     // console.log(req.url, "\n", req.headers)
     // console.log("++++++++++++++++++++++++++ INCOMING REQUEST "+ count +"++++++++++++++++++++++++++++++++++++++++++")
     next();
@@ -56,7 +56,7 @@ app.use(function(req, res, next) {
 // app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use('/evil', indexRouter);
