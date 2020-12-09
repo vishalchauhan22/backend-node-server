@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   setTimeout(function(){
     res.render('index', { title: 'This is the Evil Page' });
-  }, 1500)
+  }, 0)
   
 });
 

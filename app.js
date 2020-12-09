@@ -62,9 +62,9 @@ app.use(bodyParser.json());
 app.use('/evil', indexRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    next(createError(404));
-});
+//app.use(function(req, res, next) {
+//    next(createError(404));
+//});
 
 app.use(function(req, res, next) {
 
@@ -93,6 +93,9 @@ app.use(function(req, res, next) {
     next();
 
     // -----------------------------------------------------------------------
+})
+app.use('/21',function(req, res, next){
+res.send('ok');
 })
 
 // error handler
